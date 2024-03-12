@@ -124,7 +124,7 @@ function nextButtonValid(count) {
         let phoneNumber = document.getElementById
             ('phoneNumber').value;
 
-        if (count >= 1 && phoneNumber.length === 11) {
+        if (count >= 1 && phoneNumber.length === 10) {
             document.getElementById
                 ('phoneNumber').value = '';
             let bodyFunction = document.getElementById('bodyFunction');
@@ -133,7 +133,7 @@ function nextButtonValid(count) {
             successPopUp.classList.remove("hidden");
         }
         else {
-            alert("You have to select at least 1 ticket & also enter your 11 digits phone number to go next....");
+            alert("You have to select at least 1 ticket & also enter your 10 digits phone number to go next....");
         }
     });
 }
