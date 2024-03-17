@@ -10,16 +10,24 @@ on:
 jobs:
   sonarcloud:
     name: SonarCloud and Quality Gate
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
+          ref: main  # Specify the branch explicitly
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+        # Make sure to remove the fetch-depth parameter in the future once SonarCloud no longer requires it.
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          sonar_token: ${{ secrets.SONAR_TOKEN }}
+          # Add any other necessary inputs here if required
+          # For example, projectBaseDir if your code is not in the root directory
+          projectBaseDir: ./  # Example directory, adjust as necessary
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONARQUBE_URL: ${{ secrets.SONARQUBE_URL }}
+
       - name: Quality Gate Check
         id: quality_gate
         uses: sonarsource/sonarqube-quality-gate-action@master
