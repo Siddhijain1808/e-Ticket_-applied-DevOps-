@@ -10,7 +10,7 @@ on:
 jobs:
   sonarcloud:
     name: SonarCloud and Quality Gate
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
@@ -19,8 +19,8 @@ jobs:
           # For example, projectBaseDir if your code is not in the root directory
           projectBaseDir: ./  # Example directory, adjust as necessary
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONARQUBE_URL: ${{ secrets.SONARQUBE_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Quality Gate Check
         id: quality_gate
